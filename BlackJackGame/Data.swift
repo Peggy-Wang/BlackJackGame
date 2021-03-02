@@ -77,7 +77,14 @@ class Data: ObservableObject {
         equalPointDraw = false
         bothBlackJackDraw = playerBlackJack && dealerBlackJack
     }
-    
+    // 重置金币
+    func reInitGold() {
+        playerGold = 10
+        dealerGold = 1000
+        wager = 0
+        playerGoldRunOut = false
+        dealerGoldRunOut = false
+    }
     // 计算玩家点数和
     func calculatePlayerPointSum() -> Int {
         self.playerPointSum = 0
@@ -124,6 +131,19 @@ class Data: ObservableObject {
     func draw() {
         self.playerGold += self.wager
         self.dealerGold += self.wager
+    }
+    // 扣除赌注
+    func minusWager() {
+        if self.playerGold >= self.wager {
+            self.playerGold -= self.wager
+        } else {
+            self.playerGoldRunOut = true
+        }
+        if self.dealerGold >= self.wager {
+            self.dealerGold -= self.wager
+        } else {
+            self.dealerGoldRunOut = true
+        }
     }
 }
 

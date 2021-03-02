@@ -81,6 +81,12 @@ struct GameView: View {
                         } else if data.bothBlackJackDraw {
                             ResultView(result: "平局：你和庄家同时达成了黑杰克", winner: "none")
                         }
+                        // 某方金币耗尽
+                        if data.playerGoldRunOut {
+                            GoldRunOutView(loser: "你")
+                        } else if data.dealerGoldRunOut {
+                            GoldRunOutView(loser: "庄家")
+                        }
                     }
                     
                     HStack {
