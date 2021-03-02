@@ -26,7 +26,6 @@ struct ResultView: View {
                 
                 Button(action: {
                     newGame = true
-                    data.minusWager()
                     // 根据结果分配赌注
                     if winner == "玩家" {
                         data.playerWin()
@@ -35,6 +34,7 @@ struct ResultView: View {
                     } else {
                         data.draw()
                     }
+                    data.minusWager()
                     // 重新洗牌 刷新数据
                     cards2 = disorder(cards: &cards1)
                     data.reInit()
